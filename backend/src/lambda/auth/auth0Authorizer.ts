@@ -1,10 +1,8 @@
 import { CustomAuthorizerEvent, CustomAuthorizerResult } from 'aws-lambda'
 import 'source-map-support/register'
-
-import { verify, decode } from 'jsonwebtoken'
+import { verify} from 'jsonwebtoken'
 import { createLogger } from '../../utils/logger'
 import Axios from 'axios'
-import { Jwt } from '../../auth/Jwt'
 import { JwtPayload } from '../../auth/JwtPayload'
 
 const logger = createLogger('auth')
@@ -69,7 +67,6 @@ async function verifyToken(authHeader: string): Promise<JwtPayload> {
     logger.error('Fail to authenticate the user', err)
   }
 }
-
 function getToken(authHeader: string): string {
   if (!authHeader) throw new Error('No authentication header')
 
